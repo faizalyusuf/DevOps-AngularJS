@@ -1,9 +1,9 @@
 pipeline{
-    agent none 
+    agent any 
     stages {
         
         stage('Checkout'){
-            agent { label 'ciagent'}
+            //agent { label 'ciagent'}
             steps {
 		checkout scm
             }
@@ -11,13 +11,13 @@ pipeline{
         }
         
         stage('Build & Unit Test'){
-            agent {
+            /*agent {
                 docker {
                     image 'maven:3.5-alpine'
                     label 'ciagent'
                     args '-v /root/.m2:/root/.m2:rw'
                 }
-            }
+            }*/
             steps {
                 sh "mvn clean install"
             }
@@ -29,7 +29,7 @@ pipeline{
             }
         }
         
-        stage('Code Analysis'){
+        /*stage('Code Analysis'){
             agent {
                 docker {
                      image 'newtmitch/sonar-scanner'
@@ -87,7 +87,7 @@ pipeline{
         build job: 'Deployment-Pipeline', parameters:[[$class: 'StringParameterValue', name: 'Application', value: 'angularjavaapp'], [$class: 'StringParameterValue', name: 'Environment', value: 'demo'],[$class: 'StringParameterValue', name: 'Build_number', value: currentBuild.number.toString()],[$class: 'StringParameterValue', name: 'Storage_path', value: 'example-repo-local'],[$class: 'StringParameterValue', name: 'Artifact_name', value: 'AngularJavaApp']]
 		}
 		}
-	}    
+	}*/    
 	
     }//end stages
     
