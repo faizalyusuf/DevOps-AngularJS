@@ -19,12 +19,12 @@ pipeline{
                 }
             }*/
             steps {
-                sh "mvn clean install"
+                sh 'mvn clean install'
             }
             post {
                 always {
                     //junit
-                    junit "target/surefire-reports/*.xml"
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
