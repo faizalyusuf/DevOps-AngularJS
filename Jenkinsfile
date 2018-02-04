@@ -1,14 +1,6 @@
 pipeline{
-    agent any 
+    agent {label 'mac'} 
     stages {
-        
-        stage('Checkout'){
-            agent { label 'mac'}
-            steps {
-		checkout scm
-            }
-                
-        }
         
         stage('Build & Unit Test'){
             agent {
