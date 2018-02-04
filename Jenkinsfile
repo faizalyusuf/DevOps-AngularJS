@@ -3,7 +3,7 @@ pipeline{
     stages {
         
         stage('Checkout'){
-            //agent { label 'ciagent'}
+            agent { label 'mac'}
             steps {
 		checkout scm
             }
@@ -11,13 +11,13 @@ pipeline{
         }
         
         stage('Build & Unit Test'){
-            /*agent {
+            agent {
                 docker {
                     image 'maven:3.5-alpine'
-                    label 'ciagent'
+                    label 'mac'
                     args '-v /root/.m2:/root/.m2:rw'
                 }
-            }*/
+            }
             steps {
                 sh 'mvn clean install'
             }
